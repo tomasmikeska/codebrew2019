@@ -4,7 +4,7 @@ function setSocketWithBackend(url, store) {
   const socket = socketIo(url);
 
   socket.on('connectSuccess', () => {
-    store.commit('SOCKET_CONNECT', socket);
+    store.commit('SET_SOCKET', socket);
   });
 
   socket.on('assistant', (data) => {
@@ -18,6 +18,7 @@ function setSocketWithBackend(url, store) {
       const languageID = 1;
       const engineID = 4;
 
+      store.dispatch('startTalking');
       sayText(data.message.content, voiceID, languageID, engineID); // eslint-disable-line
     }
   });

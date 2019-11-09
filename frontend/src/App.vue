@@ -5,6 +5,7 @@
         <Rona />
       </div>
       <div class="col-8">
+        {{ botState }}
         <Messages />
       </div>
     </div>
@@ -20,6 +21,11 @@ export default {
   components: {
     Rona,
     Messages
+  },
+  computed: {
+    botState() {
+      return this.$store.state.botState;
+    }
   }
 };
 </script>

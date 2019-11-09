@@ -2,7 +2,7 @@ export default {
   data() {
     return {
       videoSource: null,
-      takePhotosInterval: null
+      takePhotosLoop: null
     };
   },
   methods: {
@@ -16,7 +16,7 @@ export default {
         });
     },
     startTakingPhotos(intervalInMilliseconds) {
-      this.takePhotosInterval = setInterval(() => {
+      this.takePhotosLoop = setInterval(() => {
         this.takePhoto();
       }, intervalInMilliseconds);
     },
@@ -28,10 +28,20 @@ export default {
       });
     },
     sendPhoto(photo) {
-      console.log("photo :", photo);
+      const faceRecognitionMock = {
+        "facePresent": Math.random() >= 0.5,
+        "landmarks": {
+          "eyesCenter": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "personId": '1'
+      };
+      this.$store.dispatch('setFaceRecognitionData', faceRecognitionMock);
     },
     stopTakingPhotos() {
-      clearInterval(this.takePhotosInterval);
+      clearInterval(this.takePhotosLoop);
     }
   },
   mounted() {
