@@ -1,11 +1,26 @@
-# Microservice Boilerplate
+# backend
 
-Use this repo as a starter for working REST API microservice.
+## Project setup
+```
+npm install
+```
 
-Features:
-- TypeScript support (prod build into .js files)
-- Express (REST API)
-- Jest tests
-- ESLint 
-- Gitlab CI (test, lint)
-- Docker for prod build
+### Compiles and hot-reloads for development
+```
+npm run start
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Tests
+```
+npm run test
+```
