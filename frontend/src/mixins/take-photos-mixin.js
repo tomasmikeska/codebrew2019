@@ -21,7 +21,7 @@ export default {
       }, intervalInMilliseconds);
     },
     takePhoto() {
-      if (this.videoSource) {
+      if (this.videoSource && this.$store.state.isSitePalLoaded) {
         const videoTrack = this.videoSource.getVideoTracks()[0];
         const imageCapture = new ImageCapture(videoTrack);
         imageCapture.takePhoto().then(photo => {

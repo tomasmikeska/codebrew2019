@@ -51,11 +51,11 @@ export default {
       window.vh_sceneLoaded = () => {
         // eslint-disable-next-line
         setIdleMovement(options.idleMovement.frequency, options.idleMovement.radius);
-        // this.$store.commit('SITEPAL_LOADED', true);
+        this.$store.commit('SET_SITEPAL_LOADED', true);
       };
 
       window.addEventListener('beforeunload', () => {
-        // this.$store.commit('SITEPAL_LOADED', false);
+        this.$store.commit('SET_SITEPAL_LOADED', false);
       });
     },
   },

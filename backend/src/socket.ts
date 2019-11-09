@@ -18,22 +18,18 @@ export default function setSocket(server: Server): SocketServer {
           content: message
         };
       });
-      setTimeout(() => {
-        socket.emit('assistant', {
-          messages
-        });
-      }, 3000);
+      socket.emit('assistant', {
+        messages
+      });
     });
 
     socket.on('new-person', (person) => {
       console.log(`User ${person.firstName} ${person.surname} is here!`);
-      setTimeout(() => {
-        socket.emit('assistant', {
-          messages: [
-            { content: `Hello ${person.firstName} ${person.surname}!` }
-          ] 
-        });
-      }, 2000);
+      socket.emit('assistant', {
+        messages: [
+          { content: `Hello ${person.firstName} ${person.surname}!` }
+        ] 
+      });
     });
 
     socket.on('disconnect', () => {
