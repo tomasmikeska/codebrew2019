@@ -40,6 +40,7 @@ export default {
         `0|0|${options.position.x}|${options.position.y}|${options.alignment}|B|true|0|0|0|0|${options.avatarImgUrl}|Double%20click%20to%20play%20me|0|'C'|0|0|0|1828`);
 
       window.vh_talkEnded = () => {
+        // devServer
         // this.$store.commit('STOPPED_TALKING');
       };
 
@@ -61,20 +62,10 @@ export default {
 
   beforeDestroy() {
     console.log('BEFORE DESTROY IN RONA VUE');
-    this.$store.commit('SITEPAL_LOADED', false);
+    // this.$store.commit('SITEPAL_LOADED', false);
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  .rona_img {
-    position: fixed;
-    left: 0;
-    bottom: -130px;
-    width: 96vw;
-    height: auto;
-    margin: 0 2vw;
-    z-index: 9999;
-  }
-
 </style>
