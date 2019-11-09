@@ -6,11 +6,12 @@
 
 <script>
 import takePhotosMixin from '../mixins/take-photos-mixin.js';
+import listenVoiceMixin from '../mixins/listen-voice-mixin.js';
 
 export default {
   name: 'Rona',
 
-  mixins: [takePhotosMixin],
+  mixins: [takePhotosMixin, listenVoiceMixin],
 
   methods: {
     createAvatar() {

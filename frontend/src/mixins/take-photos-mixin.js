@@ -21,11 +21,13 @@ export default {
       }, intervalInMilliseconds);
     },
     takePhoto() {
-      const videoTrack = this.videoSource.getVideoTracks()[0];
-      const imageCapture = new ImageCapture(videoTrack);
-      imageCapture.takePhoto().then(photo => {
-        this.sendPhoto(photo);
-      });
+      if (this.videoSource) {
+        const videoTrack = this.videoSource.getVideoTracks()[0];
+        const imageCapture = new ImageCapture(videoTrack);
+        imageCapture.takePhoto().then(photo => {
+          this.sendPhoto(photo);
+        });
+      }
     },
     sendPhoto(photo) {
       const isNewPerson = Math.random() >= 0.5;

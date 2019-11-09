@@ -9,7 +9,6 @@
         <button @click="sendMessage">Send message</button>
         {{ botState }}
         <Messages />
-        <Voice />
       </div>
     </div>
   </div>
@@ -18,14 +17,12 @@
 <script>
 import Rona from "./components/Rona.vue";
 import Messages from "./components/Messages.vue";
-import Voice from "./components/Voice.vue";
 
 export default {
   name: "app",
   components: {
     Rona,
-    Messages,
-    Voice
+    Messages
   },
   data() {
     return {

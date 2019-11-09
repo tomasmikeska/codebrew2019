@@ -1,12 +1,5 @@
-<template>
-  <div>
-    <div id="voice"></div>
-  </div>
-</template>
-
-<script>
-const axios = require('axios');
 import { mapGetters, mapActions } from "vuex";
+const axios = require('axios');
 
 export default {
   data() {
@@ -17,11 +10,9 @@ export default {
       token: null,
     };
   },
-
   computed: {
     ...mapGetters(["isListening"])
   },
-
   methods: {
     ...mapActions(["sendMessage"]),
     getTranscription() {
@@ -29,8 +20,8 @@ export default {
     },
     transcribeFromMic() {
       const speechConfig = this.SpeechSDK.SpeechConfig.fromSubscription(
-              this.token, // token
-              "francecentral" // region
+        this.token, // token
+        "francecentral" // region
       );
       speechConfig.speechRecognitionLanguage = "en-US";
       const audioConfig = this.SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
@@ -57,15 +48,13 @@ export default {
       );
     }
   },
-
   async created() {
+    console.log('created from listen voice mixin');
     this.token = (await axios.get('http://localhost:3333/azure')).data;
   },
-
   mounted() {
     this.SpeechSDK = window.SpeechSDK;
   },
-
   watch: {
     isListening(newValue, oldValue) {
       if (!oldValue && newValue) {
@@ -74,10 +63,3 @@ export default {
     }
   }
 };
-</script>
-
-<style lang="scss" scoped>
-#voice {
-  display: block;
-}
-</style>
