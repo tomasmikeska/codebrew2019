@@ -80,18 +80,21 @@ export default new Vuex.Store({
   },
   actions: {
     setFaceRecognitionData({ commit, dispatch }, faceRecognition) {
+      dispatch('setPersonById', faceRecognition.personId);
       dispatch('setFacePresent', faceRecognition.facePresent);
       commit('SET_EYES_CENTER', faceRecognition.landmarks.eyesCenter);
-      dispatch('setPersonById', faceRecognition.personId);
     },
-    setPersonById({ commit }, personId) {
+    setPersonById({ commit, dispatch, state }, personId) {
       const person = PERSONS.find(person => person.id === personId);
-      commit('SET_PERSON', person);
+      if (person !== state.person && state.botState === BOT_STATES.READY) {
+        commit('SET_PERSON', person);
+        dispatch('sendNewPerson');
+      }
     },
     setFacePresent({ commit, state }, facePresent) {
       if (facePresent) {
         commit('RESET_FACE_NOT_PRESENT_COUNTER');
-      } else {
+      } else if (state.botState === BOT_STATES.READY) {
         commit('INCREASE_FACE_NOT_PRESENT_COUNTER');
       }
 
@@ -108,6 +111,10 @@ export default new Vuex.Store({
     },
     stopTalking({ commit }) {
       commit('SET_BOT_STATE', BOT_STATES.READY);
+    },
+    sendNewPerson({ commit, state }) {
+      commit('SET_BOT_STATE', BOT_STATES.WAITING);
+      state.socket.emit('new-person', state.person);
     },
     sendMessage({ commit, state }, message) {
       commit('ADD_MESSAGE', {

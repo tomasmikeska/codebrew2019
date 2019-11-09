@@ -28,6 +28,14 @@ export default {
       });
     },
     sendPhoto(photo) {
+      const isNewPerson = Math.random() >= 0.5;
+      let personId = null;
+      if (isNewPerson || !this.$store.state.person) {
+        personId = (Math.floor(Math.random() * 3) + 1).toString();
+      } else {
+        personId = this.$store.state.person.id;
+      }
+
       const faceRecognitionMock = {
         "facePresent": Math.random() >= 0.5,
         "landmarks": {
@@ -36,7 +44,7 @@ export default {
             "y": 0
           }
         },
-        "personId": (Math.floor(Math.random() * 3) + 1).toString()
+        "personId": personId
       };
       this.$store.dispatch('setFaceRecognitionData', faceRecognitionMock);
     },
