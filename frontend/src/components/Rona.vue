@@ -13,8 +13,8 @@ export default {
       const options = {
         // 0 false ; 1 true
         displayControl: 0,
-        width: window.innerWidth,
-        height: 1487,
+        width: window.innerWidth/3,
+        height: window.innerHeight,
         avatarImgUrl: 'vhss.oddcast.com/ccs2/vhss/user/cf5/7111608/thumbs/show_2658390.jpg',
         sitePalOptionHash: 'cb0103293341f84cf3ca7b7a5b73bf18',
         position: {
