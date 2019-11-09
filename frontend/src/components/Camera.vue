@@ -33,7 +33,6 @@ export default {
     takePhoto() {
       const videoTrack = this.$refs.videoStream.srcObject.getVideoTracks()[0];
       const imageCapture = new ImageCapture(videoTrack);
-      console.log("imageCapture :", imageCapture);
       imageCapture.takePhoto().then(photo => {
         this.sendPhoto(photo);
       });
