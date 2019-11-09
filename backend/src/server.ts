@@ -2,6 +2,10 @@ import app from './app';
 import { createServer, Server } from 'http';
 import setSocket from './socket';
 
+const nlpAdapter = require('./nlp/watson-adapter');
+
+nlpAdapter.getMessage('hello');
+
 const server: Server = createServer(app);
 setSocket(server);
 

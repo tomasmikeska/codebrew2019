@@ -5,6 +5,7 @@
 </template>
 
 <script>
+const axios = require('axios');
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -12,7 +13,8 @@ export default {
     return {
       SpeechSDK: null,
       transcription: "",
-      stream: null
+      stream: null,
+      token: null,
     };
   },
 
@@ -27,8 +29,8 @@ export default {
     },
     transcribeFromMic() {
       const speechConfig = this.SpeechSDK.SpeechConfig.fromSubscription(
-        "", // token
-        "" // region
+              this.token, // token
+              "francecentral" // region
       );
       speechConfig.speechRecognitionLanguage = "en-US";
       const audioConfig = this.SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
@@ -54,6 +56,10 @@ export default {
         }
       );
     }
+  },
+
+  async created() {
+    this.token = (await axios.get('http://localhost:3333/azure')).data;
   },
 
   mounted() {
