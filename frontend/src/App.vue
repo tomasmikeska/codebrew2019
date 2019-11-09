@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Rona />
+    <Camera />
   </div>
 </template>
 
 <script>
 import Rona from './components/Rona.vue';
+import Camera from './components/Camera.vue';
 
 export default {
   name: "app",
   components: {
-    Rona
+    Rona,
+    Camera
   }
 };
 </script>
