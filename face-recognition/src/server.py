@@ -5,7 +5,8 @@ from flask import Flask, request, make_response
 from flask_cors import CORS
 from PIL import Image
 from io import BytesIO
-from face_recognition import detect_eyes, get_eyes_center
+from face_detection import detect_eyes, get_eyes_center
+from face_identification import get_face_identity
 
 
 app = Flask('Face Recognition')
@@ -44,5 +45,6 @@ def is_face_present():
                 "x": eyes_x,
                 "y": eyes_y
             }
-        }
+        },
+        "person_id": get_face_identity(img_np)
     }

@@ -5,7 +5,7 @@ from flask import Flask, request, make_response
 from flask_cors import CORS
 from PIL import Image
 from io import BytesIO
-from face_recognition import detect_landmarks, get_eyes_center
+from dlib_face_detection import detect_landmarks, get_eyes_center
 
 
 app = Flask('Face Recognition')
@@ -36,9 +36,6 @@ def is_face_present():
     # Face landmarks
     landmarks = detect_landmarks(img_np)
     eyes_x, eyes_y = get_eyes_center(landmarks, img_np.shape[:2])
-
-    # if len(eyes) < 2:
-    #     cv2.imwrite("/Users/tomasmikeska/Desktop/test.jpg", img_np)
 
     return {
         "facePresent": len(eyes) >= 2,
