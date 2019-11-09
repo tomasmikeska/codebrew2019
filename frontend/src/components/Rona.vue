@@ -40,6 +40,10 @@ export default {
         options.sitePalOptionHash, 0,
         `0|0|${options.position.x}|${options.position.y}|${options.alignment}|B|true|0|0|0|0|${options.avatarImgUrl}|Double%20click%20to%20play%20me|0|'C'|0|0|0|1828`);
 
+      window.vh_talkStarted = () => {
+        this.$store.dispatch('startTalking');
+      };
+
       window.vh_talkEnded = () => {
         this.$store.dispatch('stopTalking');
       };
