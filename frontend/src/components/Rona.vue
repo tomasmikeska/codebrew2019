@@ -1,7 +1,6 @@
 <template>
   <div>
     <div id='divVHSS'></div>
-    <img v-if="!$store.state.isSitePalLoaded" alt="Rona image when sitePal not loaded" class="rona_img"  src="../assets/rona.png">
   </div>
 </template>
 
@@ -25,7 +24,7 @@ export default {
         alignment: 'C',
         idleMovement: {
           frequency: 70,
-          radius: 30,
+          radius: 30
         },
       };
 
