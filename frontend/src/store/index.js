@@ -53,6 +53,9 @@ export default new Vuex.Store({
     isListening: (state) => state.botState === BOT_STATES.LISTENING
   },
   mutations: {
+    SET_SITEPAL_LOADED(state, isSitePalLoaded) {
+      state.isSitePalLoaded = isSitePalLoaded;
+    },
     SET_SOCKET(state, socket) {
       state.socket = socket;
     },
