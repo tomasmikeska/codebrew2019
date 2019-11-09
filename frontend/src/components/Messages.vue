@@ -67,11 +67,13 @@ export default {
 
       &.is-bot {
         margin-right: 20px;
+        text-align: left;
       }
 
       &.is-user {
         margin-left: 20px;
         justify-content: flex-end;
+        text-align: right;
       }
 
       .message_content {

@@ -83,6 +83,16 @@ export default new Vuex.Store({
     },
     stopTalking({ commit }) {
       commit('SET_BOT_STATE', BOT_STATES.READY);
+    },
+    sendMessage({ commit, state }, message) {
+      commit('ADD_MESSAGE', {
+        content: message,
+        isUser: true
+      });
+      commit('SET_BOT_STATE', BOT_STATES.WAITING);
+      state.socket.emit('message', {
+        content: message
+      });
     }
   },
   modules: {}

@@ -5,6 +5,8 @@
         <Rona />
       </div>
       <div class="col-8">
+        <input v-model="message">
+        <button @click="sendMessage">Send message</button>
         {{ botState }}
         <Messages />
       </div>
@@ -22,9 +24,19 @@ export default {
     Rona,
     Messages
   },
+  data() {
+    return {
+      message: ''
+    };
+  },
   computed: {
     botState() {
       return this.$store.state.botState;
+    }
+  },
+  methods: {
+    sendMessage() {
+      this.$store.dispatch('sendMessage', this.message);
     }
   }
 };

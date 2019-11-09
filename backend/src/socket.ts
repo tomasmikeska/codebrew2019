@@ -8,15 +8,17 @@ export default function setSocket(server: Server): SocketServer {
     console.log('Connected GUI');
     socket.emit('connectSuccess');
 
-    let counter = 1;
-    setInterval(() => {
-      counter++;
-      socket.emit('assistant', {
-        message: {
-          content: `Message ${counter}`,
-        }
-      });
-    }, 5000);
+    socket.on('message', (message) => {
+      console.log(`Received message with content: ${message.content}`);
+      setTimeout(() => {
+        console.log('ANSWER!');
+        socket.emit('assistant', {
+          message: {
+            content: `Answer to message ${message.content}`
+          }
+        });
+      }, 3000);
+    });
 
     socket.on('disconnect', () => {
       console.log('Disconnected GUI');
