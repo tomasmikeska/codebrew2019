@@ -36,17 +36,17 @@ export default {
         `0|0|${options.position.x}|${options.position.y}|${options.alignment}|B|true|0|0|0|0|${options.avatarImgUrl}|Double%20click%20to%20play%20me|0|'C'|0|0|0|1828`);
 
       window.vh_talkEnded = () => {
-        this.$store.commit('STOPPED_TALKING');
+        // this.$store.commit('STOPPED_TALKING');
       };
 
       window.vh_sceneLoaded = () => {
         // eslint-disable-next-line
-        setIdleMovement(options.idleMovement.frequency,options.idleMovement.radius);
-        this.$store.commit('SITEPAL_LOADED', true);
+        setIdleMovement(options.idleMovement.frequency, options.idleMovement.radius);
+        // this.$store.commit('SITEPAL_LOADED', true);
       };
 
       window.addEventListener('beforeunload', () => {
-        this.$store.commit('SITEPAL_LOADED', false);
+        // this.$store.commit('SITEPAL_LOADED', false);
       });
     },
   },
