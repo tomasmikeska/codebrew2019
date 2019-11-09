@@ -9,6 +9,7 @@
         <button @click="sendMessage">Send message</button>
         {{ botState }}
         <Messages />
+        <Voice />
       </div>
     </div>
   </div>
@@ -23,7 +24,8 @@ export default {
   name: "app",
   components: {
     Rona,
-    Messages
+    Messages,
+    Voice
   },
   data() {
     return {

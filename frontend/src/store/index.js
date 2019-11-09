@@ -31,6 +31,9 @@ export default new Vuex.Store({
     botState: BOT_STATES.READY,
     faceNotPresentCounter: 0,
   },
+  getters: {
+    isListening: (state) => state.botState === BOT_STATES.LISTENING
+  },
   mutations: {
     SET_SOCKET(state, socket) {
       state.socket = socket;

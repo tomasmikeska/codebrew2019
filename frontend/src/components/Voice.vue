@@ -1,19 +1,13 @@
 <template>
   <div>
-    <div id="voice">
-      <button v-on:click="transcribeFromMic">Start Microphone Transcription</button>
-      <button v-on:click="stopTranscription">Stop</button>
-      <p>Transcription: "{{ getTranscription() }}"</p>
-      <h2>Output:</h2>
-      <div id="output">--</div>
-    </div>
+    <div id="voice"></div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "Voice",
+import { mapGetters, mapActions } from "vuex";
 
+export default {
   data() {
     return {
       SpeechSDK: null,
@@ -22,7 +16,12 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["isListening"])
+  },
+
   methods: {
+    ...mapActions(["sendMessage"]),
     getTranscription() {
       return this.transcription;
     },
@@ -41,9 +40,7 @@ export default {
       recognizer.recognizeOnceAsync(
         result => {
           console.log(result);
-          console.log(result);
-          this.transcription = result.text ? result.text : "";
-          console.log(result);
+          this.sendMessage(result.text);
 
           recognizer.close();
           recognizer = undefined;
@@ -56,16 +53,19 @@ export default {
           recognizer = undefined;
         }
       );
-    },
-    stopTranscription() {
-      if (this.stream) {
-        this.stream.stop();
-      }
     }
   },
 
   mounted() {
     this.SpeechSDK = window.SpeechSDK;
+  },
+
+  watch: {
+    isListening(newValue, oldValue) {
+      if (!oldValue && newValue) {
+        this.transcribeFromMic();
+      }
+    }
   }
 };
 </script>
