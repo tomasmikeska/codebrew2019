@@ -23,9 +23,9 @@ export default {
         sitePalOptionHash: 'cb0103293341f84cf3ca7b7a5b73bf18',
         position: {
           x: 15,
-          y: -180,
+          y: 0,
         },
-        alignment: 'C',
+        alignment: 'L',
         idleMovement: {
           frequency: 70,
           radius: 30
