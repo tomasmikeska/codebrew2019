@@ -3,10 +3,9 @@
     <div class="row top">
       <div class="col-4 rona-container">
         <Rona />
-        <Messages />
       </div>
       <div class="col-8">
-        pice
+        <Messages />
       </div>
     </div>
   </div>

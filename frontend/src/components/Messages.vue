@@ -3,11 +3,11 @@
     <div
       v-for="(message, index) of messages"
       :key="index"
-      :class="['message', 'list-messages-item']"
+      :class="{message: true, 'list-messages-item': true, 'is-user': message.isUser, 'is-bot': !message.isUser}"
     >
       <div class="message_content">
-        <span v-if="message.isUser">User: </span>
-        <span v-else>Bot: </span>
+<!--        <span v-if="message.isUser">User: </span>-->
+<!--        <span v-else>Bot: </span>-->
         <span>{{ message.content }}</span>
       </div>
     </div>
@@ -17,11 +17,13 @@
 <script>
 export default {
   name: 'Messages',
+
   computed: {
     messages() {
       return this.$store.state.messages;
     },
   },
+
   methods: {
     scrollBottom() {
       if (this.$refs.messages.$el.lastElementChild) {
@@ -38,7 +40,6 @@ export default {
 <style lang="scss" scoped>
   .list-messages-item {
     transition: all 0.5s;
-    margin-right: 10px;
   }
   .list-messages-enter, .list-messages-leave-to {
     opacity: 0;
@@ -61,12 +62,16 @@ export default {
 
     .message {
       display: flex;
-      margin-bottom: 42px;
+      margin-bottom: 0;
       align-items: flex-end;
 
-      .avatar {
-        padding-left: 24px;
-        padding-bottom: 5px;
+      &.is-bot {
+        margin-right: 20px;
+      }
+
+      &.is-user {
+        margin-left: 20px;
+        justify-content: flex-end;
       }
 
       .message_content {
