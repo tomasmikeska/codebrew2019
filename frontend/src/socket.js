@@ -8,12 +8,17 @@ function setSocketWithBackend(url, store) {
   });
 
   socket.on('assistant', (data) => {
-    if (data.sayText) {
+    if (data.message) {
+      store.commit('ADD_MESSAGE', {
+        ...data.message,
+        isUser: false,
+      });
+
       const voiceID = 1;
       const languageID = 1;
       const engineID = 4;
 
-      sayText('kokotko', 1, 1, 4); // eslint-disable-line
+      sayText(data.message.content, voiceID, languageID, engineID); // eslint-disable-line
     }
   });
 }

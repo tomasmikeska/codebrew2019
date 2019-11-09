@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Rona />
+    <Messages />
   </div>
 </template>
 
 <script>
 import Rona from "./components/Rona.vue";
+import Messages from "./components/Messages.vue";
 
 export default {
   name: "app",
   components: {
-    Rona
+    Rona,
+    Messages
   }
 };
 </script>

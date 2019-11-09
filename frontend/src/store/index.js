@@ -5,9 +5,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isSitePalLoaded: false
+    isSitePalLoaded: false,
+    socket: null,
+    messages: []
   },
-  mutations: {},
+  mutations: {
+    SOCKET_CONNECT(state, socket) {
+      state.socket = socket;
+    },
+    ADD_MESSAGE(state, message) {
+      state.messages.push(message);
+    }
+  },
   actions: {},
   modules: {}
 });
