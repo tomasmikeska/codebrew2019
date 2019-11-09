@@ -46,5 +46,5 @@ def is_face_present():
                 "y": eyes_y
             }
         },
-        "person_id": get_face_identity(img_np)
+        "personId": get_face_identity(img_np)
     }
