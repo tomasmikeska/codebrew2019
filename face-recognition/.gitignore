@@ -109,7 +109,6 @@ include/
 model/*
 *.h5
 *.hdf5
-data/*
 tb_logs/
 *.zip
 notebooks/*
