@@ -36,7 +36,7 @@ export default {
             "y": 0
           }
         },
-        "personId": '1'
+        "personId": (Math.floor(Math.random() * 3) + 1).toString()
       };
       this.$store.dispatch('setFaceRecognitionData', faceRecognitionMock);
     },

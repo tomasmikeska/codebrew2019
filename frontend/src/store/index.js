@@ -18,12 +18,30 @@ const BOT_STATES = {
   }
 };
 
+const PERSONS = [
+  {
+    id: '1',
+    firstName: 'Tomas',
+    surname: 'Lysek'
+  },
+  {
+    id: '2',
+    firstName: 'Jakub',
+    surname: 'Kriz'
+  },
+  {
+    id: '3',
+    firstName: 'Boris',
+    surname: 'Kosina'
+  }
+];
+
 export default new Vuex.Store({
   state: {
     isSitePalLoaded: false,
     socket: null,
     messages: [],
-    personId: null,
+    person: null,
     eyesCenter: {
       x: 0,
       y: 0
@@ -44,8 +62,8 @@ export default new Vuex.Store({
     DELETE_ALL_MESSAGES(state) {
       state.messages = [];
     },
-    SET_PERSON_ID(state, personId) {
-      state.personId = personId;
+    SET_PERSON(state, person) {
+      state.person = person;
     },
     SET_EYES_CENTER(state, eyesCenter) {
       state.eyesCenter = eyesCenter;
@@ -64,7 +82,11 @@ export default new Vuex.Store({
     setFaceRecognitionData({ commit, dispatch }, faceRecognition) {
       dispatch('setFacePresent', faceRecognition.facePresent);
       commit('SET_EYES_CENTER', faceRecognition.landmarks.eyesCenter);
-      commit('SET_PERSON_ID', faceRecognition.personId);
+      dispatch('setPersonById', faceRecognition.personId);
+    },
+    setPersonById({ commit }, personId) {
+      const person = PERSONS.find(person => person.id === personId);
+      commit('SET_PERSON', person);
     },
     setFacePresent({ commit, state }, facePresent) {
       if (facePresent) {

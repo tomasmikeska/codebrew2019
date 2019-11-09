@@ -11,7 +11,6 @@ export default function setSocket(server: Server): SocketServer {
     socket.on('message', (message) => {
       console.log(`Received message with content: ${message.content}`);
       setTimeout(() => {
-        console.log('ANSWER!');
         socket.emit('assistant', {
           message: {
             content: `Answer to message ${message.content}`
