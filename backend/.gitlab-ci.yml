@@ -1,0 +1,22 @@
+image: node:8
+
+before_script:
+  - npm ci
+
+test:
+  script:
+    - npm run test
+  tags:
+    - docker
+
+lint:
+  script:
+    - npm run lint
+  tags:
+    - docker
+
+build:
+  script:
+    - npm run build
+  tags:
+    - docker

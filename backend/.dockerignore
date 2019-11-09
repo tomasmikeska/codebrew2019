@@ -1,0 +1,5 @@
+# Please add lines alphabetically
+.git
+.idea
+dist
+node_modules
