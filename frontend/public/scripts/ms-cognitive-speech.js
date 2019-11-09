@@ -12807,6 +12807,7 @@ var PcmRecorder = /** @class */ (function () {
                     .then(function () {
                     var workletNode = new AudioWorkletNode(context, "speech-processor");
                     workletNode.port.onmessage = function (ev) {
+                        // console.log('on message 12810');
                         var inputFrame = ev.data;
                         if (outputStream && !outputStream.isClosed) {
                             var waveFrame = waveStreamEncoder.encode(needHeader, inputFrame);
@@ -13101,7 +13102,13 @@ var WebsocketMessageAdapter = /** @class */ (function () {
                         _this.privMessageFormatter
                             .toConnectionMessage(rawMessage)
                             .on(function (connectionMessage) {
-                            _this.onEvent(new Exports_1.ConnectionMessageReceivedEvent(_this.privConnectionId, networkReceivedTime, connectionMessage));
+                                let text = JSON.parse(connectionMessage.privBody).Text;
+                                if(text){
+                                    console.log('connectionMessage', text);
+                                    var event = new CustomEvent('recognizing', {'detail': text});
+                                    document.dispatchEvent(event);
+                                }
+                                _this.onEvent(new Exports_1.ConnectionMessageReceivedEvent(_this.privConnectionId, networkReceivedTime, connectionMessage));
                             deferred_1.resolve(connectionMessage);
                         }, function (error) {
                             // TODO: Events for these ?
@@ -13199,6 +13206,7 @@ var WebsocketMessageAdapter = /** @class */ (function () {
             });
         };
         this.onEvent = function (event) {
+            // console.log('on event 13204');
             _this.privConnectionEvents.onEvent(event);
             Exports_1.Events.instance.onEvent(event);
         };
@@ -13242,7 +13250,6 @@ exports.WebsocketMessageAdapter = WebsocketMessageAdapter;
 /* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/*!
  * The buffer module from node.js, for the browser.
  *
