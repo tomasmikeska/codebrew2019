@@ -40,6 +40,10 @@ export default new Vuex.Store({
   state: {
     isSitePalLoaded: false,
     socket: null,
+    currentMessage: {
+      isUser: true,
+      content: ''
+    },
     messages: [],
     person: null,
     eyesCenter: {
@@ -55,6 +59,9 @@ export default new Vuex.Store({
   mutations: {
     SET_SOCKET(state, socket) {
       state.socket = socket;
+    },
+    SET_CURRENT_MESSAGE(state, message) {
+      state.currentMessage = message;
     },
     ADD_MESSAGE(state, message) {
       state.messages.push(message);
@@ -116,7 +123,17 @@ export default new Vuex.Store({
       commit('SET_BOT_STATE', BOT_STATES.WAITING);
       state.socket.emit('new-person', state.person);
     },
+    setCurrentMessage({ commit }, message) {
+      commit('SET_CURRENT_MESSAGE', {
+        isUser: true,
+        content: message
+      });
+    },
     sendMessage({ commit, state }, message) {
+      commit('SET_CURRENT_MESSAGE', {
+        isUser: true,
+        content: ''
+      });
       commit('ADD_MESSAGE', {
         content: message,
         isUser: true
