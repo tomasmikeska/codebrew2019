@@ -10,7 +10,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 
-socket.setSocketWithBackend(`localhost:3000`, store);
+socket.setSocketWithBackend(`localhost:3333`, store);
 
 new Vue({
   store,
