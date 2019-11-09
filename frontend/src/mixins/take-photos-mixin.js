@@ -1,17 +1,7 @@
-<template>
-  <div>
-    <h1>Camera</h1>
-    <div>
-      <video class="video_stream" ref="videoStream" autoplay muted></video>
-    </div>
-  </div>
-</template>
-
-<script>
 export default {
-  name: "Camera",
   data() {
     return {
+      videoSource: null,
       takePhotosInterval: null
     };
   },
@@ -22,16 +12,16 @@ export default {
           video: true
         })
         .then(stream => {
-          this.$refs.videoStream.srcObject = stream;
+          this.videoSource = stream;
         });
     },
-    takePhotosPeriodically(intervalInMilliseconds) {
+    startTakingPhotos(intervalInMilliseconds) {
       this.takePhotosInterval = setInterval(() => {
         this.takePhoto();
       }, intervalInMilliseconds);
     },
     takePhoto() {
-      const videoTrack = this.$refs.videoStream.srcObject.getVideoTracks()[0];
+      const videoTrack = this.videoSource.getVideoTracks()[0];
       const imageCapture = new ImageCapture(videoTrack);
       imageCapture.takePhoto().then(photo => {
         this.sendPhoto(photo);
@@ -39,20 +29,16 @@ export default {
     },
     sendPhoto(photo) {
       console.log("photo :", photo);
+    },
+    stopTakingPhotos() {
+      clearInterval(this.takePhotosInterval);
     }
   },
   mounted() {
     this.loadVideo();
-    this.takePhotosPeriodically(1000);
+    this.startTakingPhotos(1000);
   },
   beforeDestroy() {
-    clearInterval(this.takePhotosInterval);
+    this.stopTakingPhotos();
   }
 };
-</script>
-
-<style lang="scss" scoped>
-.video_stream {
-  width: 500px;
-}
-</style>

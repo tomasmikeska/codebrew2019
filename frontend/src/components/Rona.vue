@@ -5,8 +5,12 @@
 </template>
 
 <script>
+import takePhotosMixin from '../mixins/take-photos-mixin.js';
+
 export default {
   name: 'Rona',
+
+  mixins: [takePhotosMixin],
 
   methods: {
     createAvatar() {
