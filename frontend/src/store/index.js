@@ -20,19 +20,39 @@ const BOT_STATES = {
 
 const PERSONS = [
   {
-    id: '1',
+    id: 'tomas_lysek',
     firstName: 'Tomas',
     surname: 'Lysek'
   },
   {
-    id: '2',
+    id: 'jakub_kriz',
     firstName: 'Jakub',
     surname: 'Kriz'
   },
   {
-    id: '3',
-    firstName: 'Boris',
-    surname: 'Kosina'
+    id: 'tomas_gabrs',
+    firstName: 'Tomas',
+    surname: 'Gabrs'
+  },
+  {
+    id: 'lukas_krizan',
+    firstName: 'Lukas',
+    surname: 'Krizan'
+  },
+  {
+    id: 'tomas_mikeska',
+    firstName: 'Tomas',
+    surname: 'Mikeska'
+  },
+  {
+    id: 'tono_wiedermann',
+    firstName: 'Tono',
+    surname: 'Wiedermann'
+  },
+  {
+    id: 'zdenek_hladik',
+    firstName: 'Zdenek',
+    surname: 'Hladik'
   }
 ];
 
