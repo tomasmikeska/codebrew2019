@@ -133,8 +133,9 @@ export default new Vuex.Store({
   },
   actions: {
     setFaceRecognitionData({ commit, dispatch, state }, faceRecognition) {
-      commit('ADD_PERSON_ARRAY', faceRecognition.personId);
-      const mostFrequencyPerson = getMostCommon(state.personArray);
+      // commit('ADD_PERSON_ARRAY', faceRecognition.personId);
+      //const mostFrequencyPerson = getMostCommon(state.personArray);
+      const mostFrequencyPerson = faceRecognition.personId;
 
       if (mostFrequencyPerson) { // Known person is recognized
         commit('RESET_FACE_NOT_PRESENT_COUNTER');
