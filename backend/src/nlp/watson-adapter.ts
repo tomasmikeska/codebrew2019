@@ -19,6 +19,20 @@ module.exports = {
     return result;
   },
 
+  async getMessageWithContext(message: any, context: any) {
+    const result = await assistant.message({
+      workspace_id: WORKSPACE_ID,
+      input: {
+        text: message
+      },
+      context
+    });
+
+    console.log(result);
+
+    return result;
+  },
+
   async getStatus() {
     let parameters = {
       workspace_id: WORKSPACE_ID,
