@@ -34,10 +34,11 @@ COPY . /app
 WORKDIR /app
 
 # --------------------------------------------------------------------
-# PyPI
+# pipenv
 # --------------------------------------------------------------------
 
-RUN pip3 --no-cache-dir install --upgrade -r requirements.txt
+RUN python3 -m pip install pipenv
+RUN pipenv install --deploy --ignore-pipfile
 
 # --------------------------------------------------------------------
 # Ports

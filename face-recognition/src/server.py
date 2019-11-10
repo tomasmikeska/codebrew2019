@@ -48,3 +48,7 @@ def is_face_present():
         },
         "personId": get_face_identity(img_np)
     }
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)

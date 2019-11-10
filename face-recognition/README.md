@@ -25,5 +25,5 @@ $ docker build . -t "codebrew-face-recognition"
 Connect to docker image
 
 ```
-$ docker run -it codebrew-face-recognition /bin/bash
+$ docker run -it -p 5000:5000 codebrew-face-recognition /bin/bash
 ```
