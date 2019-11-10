@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Microphone class="microphone" />
     <div id='divVHSS'></div>
   </div>
 </template>
@@ -7,11 +8,16 @@
 <script>
 import takePhotosMixin from '../mixins/take-photos-mixin.js';
 import listenVoiceMixin from '../mixins/listen-voice-mixin.js';
+import Microphone from './Microphone';
 
 export default {
   name: 'Rona',
 
   mixins: [takePhotosMixin, listenVoiceMixin],
+
+  components: {
+    Microphone
+  },
 
   methods: {
     createAvatar() {
