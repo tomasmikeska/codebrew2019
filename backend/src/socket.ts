@@ -41,9 +41,12 @@ export default function setSocket(server: Server): SocketServer {
           content: message
         };
       });
-      socket.emit('assistant', {
-        messages
-      });
+
+      if (messages.length) {
+        socket.emit('assistant', {
+          messages
+        });
+      }
     });
 
     socket.on('context', async (newDate) => {

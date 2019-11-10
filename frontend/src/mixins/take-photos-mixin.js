@@ -51,7 +51,7 @@ export default {
   },
   mounted() {
     this.loadVideo();
-    this.startTakingPhotos(1000);
+    this.startTakingPhotos(200);
   },
   beforeDestroy() {
     this.stopTakingPhotos();
