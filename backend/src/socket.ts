@@ -1,5 +1,6 @@
 import socketIo, { Socket, Server as SocketServer } from 'socket.io';
 import { Server } from 'http';
+import uuid from 'uuidv4';
 
 const nlpAdapter = require('./nlp/watson-adapter');
 
@@ -38,7 +39,7 @@ export default function setSocket(server: Server): SocketServer {
     });
 
     socket.on('new-person', async (person) => {
-      context = {...date};
+      context = {...date, conversation_id: uuid()};
       if (person) {
         console.log(`User ${person.firstName} ${person.surname} is here!`);
         // @ts-ignore
