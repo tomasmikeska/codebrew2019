@@ -1,7 +1,8 @@
+// @ts-ignore
 const request = require('request-promise-any');
 
 module.exports = {
-  async smsSend(number: any, text: any) {
+  async sendSms(number: any, text: any) {
     const response = await request.post({
       url: 'https://app.gosms.cz/oauth/v2/token',
       form: {
@@ -28,4 +29,4 @@ module.exports = {
       json: true,
     });
   }
-}
+};

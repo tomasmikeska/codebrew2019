@@ -1,7 +1,11 @@
 import app from './app';
 import { createServer, Server } from 'http';
 import setSocket from './socket';
+const sms = require('./integrations/sms');
+const call = require('./integrations/call');
 
+// sms.sendSms('+421918068460', 'kokot');
+call.callTaxi('+420774532168');
 
 async function lol() {
   const nlpAdapter = require('./nlp/watson-adapter');
