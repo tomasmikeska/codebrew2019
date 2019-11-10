@@ -37,10 +37,11 @@ export default {
       reader.onloadend = () => {
         const base64data = reader.result;
 
-        axios.post('http://34.89.243.150:5050', {
+        axios.post('http://localhost:5000', {
           img: base64data
         })
           .then(resp => {
+            console.log(resp.data);
             this.$store.dispatch('setFaceRecognitionData', resp.data);
           });
       }
