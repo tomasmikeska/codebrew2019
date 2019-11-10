@@ -83,10 +83,6 @@ export default new Vuex.Store({
     messages: [],
     person: null,
     personArray: [],
-    eyesCenter: {
-      x: 0,
-      y: 0
-    },
     botState: BOT_STATES.READY,
     faceNotPresentCounter: 0,
   },
@@ -111,9 +107,6 @@ export default new Vuex.Store({
     },
     SET_PERSON(state, person) {
       state.person = person;
-    },
-    SET_EYES_CENTER(state, eyesCenter) {
-      state.eyesCenter = eyesCenter;
     },
     SET_BOT_STATE(state, botState) {
       state.botState = botState;
@@ -165,8 +158,6 @@ export default new Vuex.Store({
           }
         }
       }
-
-      commit('SET_EYES_CENTER', faceRecognition.landmarks.eyesCenter);
     },
     startTalking({ commit }) {
       commit('SET_BOT_STATE', BOT_STATES.TALKING);
