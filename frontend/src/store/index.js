@@ -109,32 +109,30 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    setFaceRecognitionData({ commit, dispatch }, faceRecognition) {
-      dispatch('setPersonById', faceRecognition.personId);
-      dispatch('setFacePresent', faceRecognition.facePresent);
-      commit('SET_EYES_CENTER', faceRecognition.landmarks.eyesCenter);
-    },
-    setPersonById({ commit, dispatch, state }, personId) {
-      const person = PERSONS.find(person => person.id === personId);
+    setFaceRecognitionData({ commit, dispatch, state }, faceRecognition) {
+      commit('SET_FACE_PRESENT', faceRecognition.facePresent);
+      const person = PERSONS.find(person => person.id === faceRecognition.personId);
       if (person !== state.person && state.botState === BOT_STATES.READY) {
         commit('SET_PERSON', person);
-        dispatch('sendNewPerson');
+        if (faceRecognition.facePresent) {
+          dispatch('sendNewPerson');
+        }
       }
-    },
-    setFacePresent({ commit, state }, facePresent) {
-      if (facePresent) {
+      if (faceRecognition.facePresent) {
         commit('RESET_FACE_NOT_PRESENT_COUNTER');
       } else if (state.botState === BOT_STATES.READY) {
         commit('INCREASE_FACE_NOT_PRESENT_COUNTER');
       }
 
-      if (facePresent && state.botState === BOT_STATES.READY) {
+      if (faceRecognition.facePresent && state.botState === BOT_STATES.READY) {
         commit('SET_BOT_STATE', BOT_STATES.LISTENING);
       }
 
-      if (!facePresent && state.faceNotPresentCounter >= 10) {
+      if (!faceRecognition.facePresent && state.botState === BOT_STATES.READY && state.faceNotPresentCounter >= 10) {
         commit('DELETE_ALL_MESSAGES');
       }
+
+      commit('SET_EYES_CENTER', faceRecognition.landmarks.eyesCenter);
     },
     startTalking({ commit }) {
       commit('SET_BOT_STATE', BOT_STATES.TALKING);
