@@ -8,18 +8,18 @@ function setSocketWithBackend(url, store) {
   });
 
   socket.on('assistant', (data) => {
-    if (data.message) {
-      store.commit('ADD_MESSAGE', {
-        ...data.message,
-        isUser: false,
-      });
-
+    if (data.messages) {
       const voiceID = 1;
       const languageID = 1;
       const engineID = 4;
 
-      store.dispatch('startTalking');
-      sayText(data.message.content, voiceID, languageID, engineID); // eslint-disable-line
+      data.messages.forEach(async message => {
+        store.commit('ADD_MESSAGE', {
+          ...message,
+          isUser: false,
+        });
+        sayText(message.content, voiceID, languageID, engineID); // eslint-disable-line
+      });
     }
   });
 }

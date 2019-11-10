@@ -14,7 +14,7 @@ export default {
     ...mapGetters(["isListening"])
   },
   methods: {
-    ...mapActions(["sendMessage"]),
+    ...mapActions(["sendMessage", 'setCurrentMessage']),
     getTranscription() {
       return this.transcription;
     },
@@ -29,6 +29,11 @@ export default {
         speechConfig,
         audioConfig
       );
+
+      document.addEventListener('recognizing', (event) => {
+        console.log('event', event.detail);
+        this.setCurrentMessage(event.detail);
+      }, false);
 
       recognizer.recognizeOnceAsync(
         result => {

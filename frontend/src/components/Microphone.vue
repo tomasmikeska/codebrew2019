@@ -1,0 +1,60 @@
+<script>
+import IconMicrophoneOn from './icons/IconMicrophoneOn.vue';
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'Microphone',
+
+  components: {
+    IconMicrophoneOn,
+  },
+
+  computed: {
+    ...mapGetters([
+      'isListening'
+    ])
+  }
+};
+</script>
+
+<template>
+  <transition name="slide">
+    <div class="microphone-wrapper">
+      <div class="microphone"><IconMicrophoneOn :size="55" fill="e15913" /></div>
+    </div>
+  </transition>
+</template>
+
+
+<style lang="scss" scoped>
+  .slide-enter-active, .slide-leave-active {
+    .microphone {
+      transition: all 2s;
+    }
+  }
+  .slide-enter, .slide-leave-to {
+    .microphone {
+      top: 50px;
+    }
+  }
+
+  .microphone-wrapper {
+    position: relative;
+    height: 105px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .microphone {
+    position: absolute;
+    top: 0;
+    padding: 25px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(6px);
+    width: fit-content;
+  }
+</style>

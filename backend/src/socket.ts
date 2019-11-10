@@ -1,6 +1,8 @@
 import socketIo, { Socket, Server as SocketServer } from 'socket.io';
 import { Server } from 'http';
 
+const nlpAdapter = require('./nlp/watson-adapter');
+
 export default function setSocket(server: Server): SocketServer {
   const socketio: SocketServer = socketIo(server);
 
@@ -8,26 +10,26 @@ export default function setSocket(server: Server): SocketServer {
     console.log('Connected GUI');
     socket.emit('connectSuccess');
 
-    socket.on('message', (message) => {
+    socket.on('message', async (message) => {
       console.log(`Received message with content: ${message.content}`);
-      setTimeout(() => {
-        socket.emit('assistant', {
-          message: {
-            content: `Answer to message ${message.content}`
-          }
-        });
-      }, 3000);
+      const response = await nlpAdapter.getMessage(message.content);
+      const messages = response.output.text.map((message: String) => {
+        return {
+          content: message
+        };
+      });
+      socket.emit('assistant', {
+        messages
+      });
     });
 
     socket.on('new-person', (person) => {
       console.log(`User ${person.firstName} ${person.surname} is here!`);
-      setTimeout(() => {
-        socket.emit('assistant', {
-          message: {
-            content: `Hello ${person.firstName} ${person.surname}!`
-          }
-        });
-      }, 2000);
+      socket.emit('assistant', {
+        messages: [
+          { content: `Hello ${person.firstName} ${person.surname}!` }
+        ] 
+      });
     });
 
     socket.on('disconnect', () => {
