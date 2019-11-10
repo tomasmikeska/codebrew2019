@@ -126,7 +126,7 @@ export default new Vuex.Store({
     },
     ADD_PERSON_ARRAY(state, personId) {
       state.personArray.push(personId);
-      if (state.personArray.length > 4) {
+      if (state.personArray.length > 5) {
         state.personArray.splice(0, 1);
       }
     }
