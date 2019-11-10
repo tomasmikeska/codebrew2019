@@ -5,7 +5,7 @@ from flask import Flask, request, make_response
 from flask_cors import CORS
 from PIL import Image
 from io import BytesIO
-from face_detection import detect_eyes, get_eyes_center
+from face_detection import detect_faces
 from face_identification import get_face_identity
 
 
@@ -34,18 +34,11 @@ def is_face_present():
     # Decode image
     data_uri = request.get_json(silent=True)['img']
     img_np = base64_to_np(data_uri)
-    # Eyes landmarks
-    eyes = detect_eyes(img_np)
-    eyes_x, eyes_y = get_eyes_center(eyes, img_np.shape[:2])
+    # Faces detected
+    faces = detect_faces(img_np)
 
     return {
-        "facePresent": len(eyes) >= 2,
-        "landmarks": {
-            "eyesCenter": {
-                "x": eyes_x,
-                "y": eyes_y
-            }
-        },
+        "facePresent": len(faces) > 0,
         "personId": get_face_identity(img_np)
     }
 
