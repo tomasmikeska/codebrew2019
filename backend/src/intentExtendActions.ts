@@ -20,7 +20,14 @@ module.exports = {
         mail.sendMailWithCalendarEntry();
         break;
       case "weather":
-        console.log(weather.getWeatherConditions(intent.context.date, moment().format('hh:mm:ss'), intent.context.location))
+        const weatherData = weather.getWeatherConditions(intent.context.date, moment().format('hh:mm:ss'), intent.context.location)
+        console.log(`weather DATA: ${weatherData}`)
+        if (weatherData.temp && weatherData.desc) {
+          const message = `The temperature will be around ${Math.floor(weatherData.temp)} degrees and you will see ${weatherData.desc}.`
+          socket.emit('assistant', {
+            messages: [{ content: message }]
+          })
+        }
         break;
       default:
         return;
