@@ -35,7 +35,7 @@
       },
 
       sendContext() {
-        this.$store.dispatch("sendContext", {day: this.day, hours: this.hours});
+        this.$store.dispatch("sendContext", {day: parseInt(this.day), hours: parseInt(this.hours)});
       }
     }
   };
