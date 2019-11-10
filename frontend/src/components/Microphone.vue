@@ -20,7 +20,7 @@ export default {
 <template>
   <transition name="slide">
     <div class="microphone-wrapper">
-      <div class="microphone"><IconMicrophoneOn :size="55" fill="e15913" /></div>
+      <div v-if="isListening" class="microphone"><IconMicrophoneOn :size="55" fill="e15913" /></div>
     </div>
   </transition>
 </template>
@@ -39,7 +39,9 @@ export default {
   }
 
   .microphone-wrapper {
-    position: relative;
+    position: fixed;
+    top: 15px;
+    left: 50px;
     height: 105px;
     width: 100%;
     text-align: center;
