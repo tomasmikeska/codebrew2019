@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "05ef3308169f1e470d9fdc2b3cfd5ebfdab1f5a3453ed2b201605f02767241b1"
+            "sha256": "282ade950c8fa3c30a2d259c44d31e3fa8bdabafedf267e90148d16192c2e4e4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -21,7 +21,6 @@
                 "sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13",
                 "sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"
             ],
-            "index": "pypi",
             "version": "==7.0"
         },
         "cycler": {
@@ -29,7 +28,6 @@
                 "sha256:1d8a5ae1ff6c5cf9b93e8811e581232ad8920aeec647c37316ceac982b08cb2d",
                 "sha256:cd7b2d1018258d7247a71425e9f26463dfb444d411c39569972f4ce586b0c9d8"
             ],
-            "index": "pypi",
             "version": "==0.10.0"
         },
         "decorator": {
@@ -37,14 +35,12 @@
                 "sha256:54c38050039232e1db4ad7375cfce6748d7b41c29e95a081c8a6d2c30364a2ce",
                 "sha256:5d19b92a3c8f7f101c8dd86afd86b0f061a8ce4540ab8cd401fa2542756bce6d"
             ],
-            "index": "pypi",
             "version": "==4.4.1"
         },
         "dlib": {
             "hashes": [
                 "sha256:8ca127253a0ca82a3d847148515f82ff2c504ed77a6385ec4f38c7f8e5360860"
             ],
-            "index": "pypi",
             "version": "==19.18.0"
         },
         "face-recognition": {
@@ -98,7 +94,6 @@
                 "sha256:321b033d07f2a4136d3ec762eac9f16a10ccd60f53c0c91af90217ace7ba1f19",
                 "sha256:b12271b2047cb23eeb98c8b5622e2e5c5e9abd9784a153e9d8ef9cb4dd09d749"
             ],
-            "index": "pypi",
             "version": "==1.1.0"
         },
         "jinja2": {
@@ -106,7 +101,6 @@
                 "sha256:74320bb91f31270f9551d46522e33af46a80c3d619f4a4bf42b3164d30b5911f",
                 "sha256:9fe95f19286cfefaa917656583d020be14e7859c6b0252588391e47db34527de"
             ],
-            "index": "pypi",
             "version": "==2.10.3"
         },
         "joblib": {
@@ -114,7 +108,6 @@
                 "sha256:006108c7576b3eb6c5b27761ddbf188eb6e6347696325ab2027ea1ee9a4b922d",
                 "sha256:6fcc57aacb4e89451fd449e9412687c51817c3f48662c3d8f38ba3f8a0a193ff"
             ],
-            "index": "pypi",
             "version": "==0.14.0"
         },
         "kiwisolver": {
@@ -157,7 +150,6 @@
                 "sha256:f790f8b3dff3d53453de6a7b7ddd173d2e020fb160baff578d578065b108a05f",
                 "sha256:fe51b79da0062f8e9d49ed0182a626a7dc7a0cbca0328f612c6ee5e4711c81e4"
             ],
-            "index": "pypi",
             "version": "==1.1.0"
         },
         "markupsafe": {
@@ -191,7 +183,6 @@
                 "sha256:cd5df75523866410809ca100dc9681e301e3c27567cf498077e8551b6d20e42f",
                 "sha256:e249096428b3ae81b08327a63a485ad0878de3fb939049038579ac0ef61e17e7"
             ],
-            "index": "pypi",
             "version": "==1.1.1"
         },
         "matplotlib": {
@@ -214,7 +205,6 @@
                 "sha256:cdfbf698749a5014bf2ed9db4a07a5295df1d3a53bf80bf3cbd61edf9df05fa1",
                 "sha256:f8f4ff0b6f96e4f9b16af6b84622597b5334bf9cae8cf9b2e42e7985d5c95c64"
             ],
-            "index": "pypi",
             "version": "==2.4"
         },
         "numpy": {
@@ -318,7 +308,6 @@
                 "sha256:4acadc9a2b96c19fe00932a38ca63e601180c39a189a696abce1eaab641447e1",
                 "sha256:61b5ed888beab19ddccab3478910e2076a6b5a0295dffc43021890e136edf764"
             ],
-            "index": "pypi",
             "version": "==2.4.4"
         },
         "python-dateutil": {
@@ -326,7 +315,6 @@
                 "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c",
                 "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"
             ],
-            "index": "pypi",
             "version": "==2.8.1"
         },
         "pywavelets": {
@@ -353,7 +341,6 @@
                 "sha256:d510aef84d9852653d079c84f2f81a82d5d09815e625f35c95714e7364570ad4",
                 "sha256:e02a0558e0c2ac8b8bbe6a6ac18c136767ec56b96a321e0dfde2173adfa5a504"
             ],
-            "index": "pypi",
             "version": "==1.1.1"
         },
         "scikit-image": {
@@ -422,7 +409,6 @@
                 "sha256:1f1b7d42e254082a9db6279deae68afb421ceba6158efa6131de7b3003ee93fd",
                 "sha256:30f610279e8b2578cab6db20741130331735c781b56053c59c4076da27f06b66"
             ],
-            "index": "pypi",
             "version": "==1.13.0"
         },
         "werkzeug": {
