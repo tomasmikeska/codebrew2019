@@ -26,6 +26,8 @@ module.exports = {
       context
     });
 
+    console.log(result);
+
     return result;
   },
 

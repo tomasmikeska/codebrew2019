@@ -31,6 +31,7 @@ export default function setSocket(server: Server): SocketServer {
       }
 
       if (intentExtendActions.isCompletedIntent(response)) {
+        //
         await intentExtendActions.processIntent(intentName, response, socket);
         intentName = '';
       }
@@ -51,6 +52,7 @@ export default function setSocket(server: Server): SocketServer {
     });
 
     socket.on('new-person', async (person) => {
+      intentName = '';
       context = {...date, conversation_id: uuid()};
       if (person) {
         console.log(`User ${person.firstName} ${person.surname} is here!`);
