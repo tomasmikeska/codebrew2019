@@ -3,7 +3,7 @@ import numpy as np
 from utils import relative_path
 
 
-HAARCASCADE_CONFIG = relative_path('../resources/haarcascade_frontalcatface.xml')
+HAARCASCADE_CONFIG = relative_path('../resources/haarcascade_frontalface_default.xml')
 
 face_detector = cv2.CascadeClassifier(HAARCASCADE_CONFIG)
 
