@@ -61,7 +61,7 @@ function getMostCommon(array) {
   array.forEach(function (a) {
     count[a] = (count[a] || 0) + 1;
   });
-  return Object.keys(count).reduce(function (r, k, i) {
+  return (Object.keys(count).reduce(function (r, k, i) {
     if (!i || count[k] > count[r[0]]) {
       return [k];
     }
@@ -69,7 +69,7 @@ function getMostCommon(array) {
       r.push(k);
     }
     return r;
-  }, []);
+  }, []))[0];
 }
 
 export default new Vuex.Store({
