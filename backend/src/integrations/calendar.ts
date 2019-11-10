@@ -39,8 +39,8 @@ module.exports = {
         // send mail with defined transport object
         try {
             let info = await transporter.sendMail({
-                from: '"Your digital assistant 🤖" <jakub.kriz@artin.cz>',
-                to: 'jakub.kriz@artin.cz',
+                from: process.env.EMAIL_USER,
+                to: process.env.EMAIL_USER,
                 subject: 'New Appointment 🤖',
                 text: "Hey Jakub,\n\nI'm sending you an appointment that you wanted me to create.\n\nAdd it to your calendar if you want.\n\nYour assistant",
                 attachments: [{ path: `${__dirname}/event.ics` }]
