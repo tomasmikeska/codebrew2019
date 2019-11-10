@@ -20,12 +20,15 @@ module.exports = {
         mail.sendMailWithCalendarEntry();
         break;
       case "weather":
-        const weatherData = weather.getWeatherConditions(intent.context.date, moment().format('hh:mm:ss'), intent.context.location)
-        console.log(`weather DATA: ${weatherData}`)
-        if (weatherData.temp && weatherData.desc) {
-          const message = `The temperature will be around ${Math.floor(weatherData.temp)} degrees and you will see ${weatherData.desc}.`
+        const weatherData = await weather.getWeatherConditions(intent.context.date, moment().format('hh:mm:ss'), intent.context.location);
+        if (weatherData && weatherData.temp && weatherData.desc) {
+          const message = `The temperature will be around ${Math.floor(weatherData.temp)} degrees and you will see ${weatherData.desc}.`;
           socket.emit('assistant', {
             messages: [{ content: message }]
+          })
+        } else {
+          socket.emit('assistant', {
+            messages: [{ content: "Sorry, but weather forecasts for such data are unpredictable. Try fortune teller." }]
           })
         }
         break;
