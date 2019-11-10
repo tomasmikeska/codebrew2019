@@ -142,6 +142,9 @@ export default new Vuex.Store({
     stopTalking({ commit }) {
       commit('SET_BOT_STATE', BOT_STATES.READY);
     },
+    stopWaitingAndBeReady({ commit }) {
+      commit('SET_BOT_STATE', BOT_STATES.READY);
+    },
     sendNewPerson({ commit, state }) {
       commit('DELETE_ALL_MESSAGES');
       commit('SET_BOT_STATE', BOT_STATES.WAITING);

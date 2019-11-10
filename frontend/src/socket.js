@@ -8,7 +8,7 @@ function setSocketWithBackend(url, store) {
   });
 
   socket.on('assistant', (data) => {
-    if (data.messages) {
+    if (data.messages && data.messages.length > 0) {
       const voiceID = 1;
       const languageID = 1;
       const engineID = 4;
@@ -20,6 +20,8 @@ function setSocketWithBackend(url, store) {
         });
         sayText(message.content, voiceID, languageID, engineID); // eslint-disable-line
       });
+    } else {
+      store.dispatch('stopWaitingAndBeReady');
     }
   });
 }
