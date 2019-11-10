@@ -6,10 +6,10 @@ import setSocket from './socket';
 async function lol() {
   const nlpAdapter = require('./nlp/watson-adapter');
 
-  let result = await nlpAdapter.getMessageWithContext('meeting room', {user: 'Teri Cmuk'});
-  result = await nlpAdapter.getMessageWithContext('green', result.context);
+  let result = await nlpAdapter.getMessageWithContext('who', {user: 'Teri Cmuk'});
+  // result = await nlpAdapter.getMessageWithContext('green', result.context);
 
-  await nlpAdapter.getMessageWithContext('reserve meeting room biege', {});
+  // await nlpAdapter.getMessageWithContext('reserve meeting room biege', {});
   //await nlpAdapter.getMessage('green');
 }
 

@@ -1,13 +1,11 @@
 <template>
   <div id="app" class="container-fluid">
+    <tool-bar />
     <div class="row top">
       <div class="col-4 rona-container">
         <Rona />
       </div>
       <div class="col-8">
-        <input v-model="message" />
-        <button @click="sendMessage">Send message</button>
-        {{ botState }}
         <Messages />
       </div>
     </div>
@@ -17,28 +15,16 @@
 <script>
 import Rona from "./components/Rona.vue";
 import Messages from "./components/Messages.vue";
+import ToolBar from './ToolBar.vue';
 
 export default {
   name: "app",
+
   components: {
+    ToolBar,
     Rona,
     Messages
   },
-  data() {
-    return {
-      message: ""
-    };
-  },
-  computed: {
-    botState() {
-      return this.$store.state.botState;
-    }
-  },
-  methods: {
-    sendMessage() {
-      this.$store.dispatch("sendMessage", this.message);
-    }
-  }
 };
 </script>
 

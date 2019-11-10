@@ -165,6 +165,10 @@ export default new Vuex.Store({
       state.socket.emit('message', {
         content: message
       });
+    },
+
+    sendContext({ commit, state }, context) {
+      state.socket.emit('context', context);
     }
   },
   modules: {}

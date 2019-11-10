@@ -27,10 +27,17 @@ export default function setSocket(server: Server): SocketServer {
       });
     });
 
+    socket.on('context', async (newContext) => {
+      context = {...context, ...newContext};
+      console.log('New Context: ', context);
+    });
+
     socket.on('new-person', async (person) => {
-      console.log(`User ${person.firstName} ${person.surname} is here!`);
-      // @ts-ignore
-      context.user = `${person.firstName} ${person.surname}`;
+      if (person.firstName && person.surname) {
+        console.log(`User ${person.firstName} ${person.surname} is here!`);
+        // @ts-ignore
+        context.user = `${person.firstName} ${person.surname}`;
+      }
       const response = await nlpAdapter.getMessageWithContext('Hello', context);
       context = response.context;
 
