@@ -110,25 +110,24 @@ export default new Vuex.Store({
   },
   actions: {
     setFaceRecognitionData({ commit, dispatch, state }, faceRecognition) {
-      commit('SET_FACE_PRESENT', faceRecognition.facePresent);
       const person = PERSONS.find(person => person.id === faceRecognition.personId);
       if (person !== state.person && state.botState === BOT_STATES.READY) {
         commit('SET_PERSON', person);
-        if (faceRecognition.facePresent) {
+        if (faceRecognition.facePresent || person) {
           dispatch('sendNewPerson');
         }
       }
-      if (faceRecognition.facePresent) {
+      if (faceRecognition.facePresent || person) {
         commit('RESET_FACE_NOT_PRESENT_COUNTER');
       } else if (state.botState === BOT_STATES.READY) {
         commit('INCREASE_FACE_NOT_PRESENT_COUNTER');
       }
 
-      if (faceRecognition.facePresent && state.botState === BOT_STATES.READY) {
+      if ((faceRecognition.facePresent || person) && state.botState === BOT_STATES.READY) {
         commit('SET_BOT_STATE', BOT_STATES.LISTENING);
       }
 
-      if (!faceRecognition.facePresent && state.botState === BOT_STATES.READY && state.faceNotPresentCounter >= 10) {
+      if (state.botState === BOT_STATES.READY && state.faceNotPresentCounter >= 10) {
         commit('DELETE_ALL_MESSAGES');
       }
 
