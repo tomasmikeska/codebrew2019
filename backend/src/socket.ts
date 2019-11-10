@@ -19,12 +19,22 @@ export default function setSocket(server: Server): SocketServer {
       hours: 0,
     };
 
+    let intentName = '';
+
     socket.on('message', async (message) => {
       console.log(`Received message with content: ${message.content}`);
       const response = await nlpAdapter.getMessageWithContext(message.content, context);
       context = response.context;
 
-      intentExtendActions.processIntent(response, socket);
+      if (!intentName.length && response.intents && response.intents.length) {
+        intentName = response.intents[0].intent;
+      }
+
+      if (intentExtendActions.isCompletedIntent(response)) {
+        await intentExtendActions.processIntent(intentName, response, socket);
+        intentName = '';
+      }
+
       const messages = response.output.text.map((message: String) => {
         return {
           content: message

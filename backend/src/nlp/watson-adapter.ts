@@ -14,8 +14,6 @@ module.exports = {
       },
     });
 
-    console.log(result);
-
     return result;
   },
 
@@ -27,8 +25,6 @@ module.exports = {
       },
       context
     });
-
-    console.log(result);
 
     return result;
   },
