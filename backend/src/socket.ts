@@ -33,10 +33,14 @@ export default function setSocket(server: Server): SocketServer {
     });
 
     socket.on('new-person', async (person) => {
-      if (person.firstName && person.surname) {
+      if (person) {
         console.log(`User ${person.firstName} ${person.surname} is here!`);
         // @ts-ignore
         context.user = `${person.firstName} ${person.surname}`;
+      } else {
+        console.log("Unknown user is here!");
+        // @ts-ignore
+        delete context.user;
       }
       const response = await nlpAdapter.getMessageWithContext('Hello', context);
       context = response.context;
