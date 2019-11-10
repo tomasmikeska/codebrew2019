@@ -15,6 +15,8 @@ async function lol() {
   result = await nlpAdapter.getMessageWithContext('Berlin', result.context);
   result = await nlpAdapter.getMessageWithContext('now', result.context);
 
+  intentExtendActions.processIntent('weather', result, null);
+
 
   // await nlpAdapter.getMessageWithContext('reserve meeting room biege', {});
   //await nlpAdapter.getMessage('green');

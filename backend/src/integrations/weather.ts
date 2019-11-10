@@ -4,7 +4,7 @@ module.exports = {
     async getWeatherConditions(date_txt: String, time_txt: String, city: String) {
         try {
             const token = '27137b0fa76c7ef4daa3da3e130cf98f';
-            const rslt = (await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city},cz&units=metric&mode=json&APPID=${token}`)).data;
+            const rslt = (await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&mode=json&APPID=${token}`)).data;
             if(rslt.list) {
                 return rslt.list.reduce((rsltObj: any, weatherData: any) => {
                     return this.isClosestWeatherData(weatherData, date_txt, time_txt, 3) ? {

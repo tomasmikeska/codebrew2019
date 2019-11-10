@@ -21,6 +21,7 @@ module.exports = {
         break;
       case "weather":
         const weatherData = await weather.getWeatherConditions(intent.context.date, moment().format('hh:mm:ss'), intent.context.location);
+        console.log(weatherData);
         if (weatherData && weatherData.temp && weatherData.desc) {
           const message = `The temperature will be around ${Math.floor(weatherData.temp)} degrees and you will see ${weatherData.desc}.`;
           socket.emit('assistant', {
