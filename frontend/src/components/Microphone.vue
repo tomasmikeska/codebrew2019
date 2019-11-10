@@ -51,8 +51,6 @@ export default {
   }
 
   .microphone {
-    position: absolute;
-    top: 0;
     padding: 25px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
