@@ -3,6 +3,7 @@ import { Server } from 'http';
 import uuid from 'uuidv4';
 
 const nlpAdapter = require('./nlp/watson-adapter');
+const intentExtendActions = require('./intentExtendActions');
 
 export default function setSocket(server: Server): SocketServer {
   const socketio: SocketServer = socketIo(server);
@@ -23,6 +24,7 @@ export default function setSocket(server: Server): SocketServer {
       const response = await nlpAdapter.getMessageWithContext(message.content, context);
       context = response.context;
 
+      intentExtendActions(response, socket);
       const messages = response.output.text.map((message: String) => {
         return {
           content: message

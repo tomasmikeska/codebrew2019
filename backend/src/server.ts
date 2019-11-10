@@ -5,19 +5,20 @@ const sms = require('./integrations/sms');
 const call = require('./integrations/call');
 
 // sms.sendSms('+421918068460', 'kokot');
-// call.callTaxi('+420774532168'); conversation_id
+// call.callTaxi('+420774532168', `Hi, we would like to order taxi service from our office to ${'taxi_destination:'} at ${time}`);
 
 async function lol() {
   const nlpAdapter = require('./nlp/watson-adapter');
 
-  let result = await nlpAdapter.getMessageWithContext('taxi', {user: 'Teri Cmuk'});
-  // result = await nlpAdapter.getMessageWithContext('green', result.context);
+  let result = await nlpAdapter.getMessageWithContext('taxi cinema', {});
+  result = await nlpAdapter.getMessageWithContext('at 15', result.context);
+  //result = await nlpAdapter.getMessageWithContext('cinema', result.context);
 
   // await nlpAdapter.getMessageWithContext('reserve meeting room biege', {});
   //await nlpAdapter.getMessage('green');
 }
 
-// lol();
+//lol();
 
 const server: Server = createServer(app);
 setSocket(server);
