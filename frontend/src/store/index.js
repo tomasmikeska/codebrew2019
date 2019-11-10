@@ -161,14 +161,18 @@ export default new Vuex.Store({
         isUser: true,
         content: ''
       });
-      commit('ADD_MESSAGE', {
-        content: message,
-        isUser: true
-      });
-      commit('SET_BOT_STATE', BOT_STATES.WAITING);
-      state.socket.emit('message', {
-        content: message
-      });
+      if (message) {
+        commit('ADD_MESSAGE', {
+          content: message,
+          isUser: true
+        });
+        commit('SET_BOT_STATE', BOT_STATES.WAITING);
+        state.socket.emit('message', {
+          content: message
+        });
+      } else {
+        commit('SET_BOT_STATE', BOT_STATES.READY);
+      }
     },
 
     sendContext({ commit, state }, context) {
