@@ -56,6 +56,22 @@ const PERSONS = [
   }
 ];
 
+function getMostCommon(array) {
+  let count = {};
+  array.forEach(function (a) {
+    count[a] = (count[a] || 0) + 1;
+  });
+  return (Object.keys(count).reduce(function (r, k, i) {
+    if (!i || count[k] > count[r[0]]) {
+      return [k];
+    }
+    if (count[k] === count[r[0]]) {
+      r.push(k);
+    }
+    return r;
+  }, []))[0];
+}
+
 export default new Vuex.Store({
   state: {
     isSitePalLoaded: false,
@@ -66,6 +82,7 @@ export default new Vuex.Store({
     },
     messages: [],
     person: null,
+    personArray: [],
     eyesCenter: {
       x: 0,
       y: 0
@@ -106,13 +123,22 @@ export default new Vuex.Store({
     },
     RESET_FACE_NOT_PRESENT_COUNTER(state) {
       state.faceNotPresentCounter = 0;
+    },
+    ADD_PERSON_ARRAY(state, personId) {
+      state.personArray.push(personId);
+      if (state.personArray.length > 5) {
+        state.personArray.splice(0, 1);
+      }
     }
   },
   actions: {
     setFaceRecognitionData({ commit, dispatch, state }, faceRecognition) {
-      if (faceRecognition.personId) { // Known person is recognized
+      commit('ADD_PERSON_ARRAY', faceRecognition.personId);
+      const mostFrequencyPerson = getMostCommon(state.personArray);
+
+      if (mostFrequencyPerson) { // Known person is recognized
         commit('RESET_FACE_NOT_PRESENT_COUNTER');
-        const person = PERSONS.find(person => person.id === faceRecognition.personId);
+        const person = PERSONS.find(person => person.id === mostFrequencyPerson);
         if (person !== state.person && state.botState === BOT_STATES.READY) {
           commit('SET_PERSON', person);
           dispatch('sendNewPerson');

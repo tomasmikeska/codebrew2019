@@ -29,7 +29,7 @@ def get_face_identity(img_np):
     target_embs = face_recognition.face_encodings(img_np)
 
     if len(target_embs) > 0:
-        hits = face_recognition.compare_faces(anchor_embs, target_embs[0])
+        hits = face_recognition.compare_faces(anchor_embs, target_embs[0], tolerance=0.5)
         hit_idx = hits.index(True) if True in hits else None
         if hit_idx != None:
             return img_paths[hit_idx].split('.')[0]
