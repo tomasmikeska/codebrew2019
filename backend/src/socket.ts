@@ -34,6 +34,7 @@ export default function setSocket(server: Server): SocketServer {
         //
         await intentExtendActions.processIntent(intentName, response, socket);
         intentName = '';
+        context = { ...date, conversation_id: uuid() };
       }
 
       const messages = response.output.text.map((message: String) => {
@@ -50,13 +51,13 @@ export default function setSocket(server: Server): SocketServer {
     });
 
     socket.on('context', async (newDate) => {
-      date = {...newDate};
+      date = { ...newDate };
       console.log('New date: ', date);
     });
 
     socket.on('new-person', async (person) => {
       intentName = '';
-      context = {...date, conversation_id: uuid()};
+      context = { ...date, conversation_id: uuid() };
       if (person) {
         console.log(`User ${person.firstName} ${person.surname} is here!`);
         // @ts-ignore
