@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 export default {
   data() {
     return {
@@ -30,25 +32,18 @@ export default {
       }
     },
     sendPhoto(photo) {
-      const isNewPerson = Math.random() >= 0.5;
-      let personId = null;
-      if (isNewPerson || !this.$store.state.person) {
-        personId = (Math.floor(Math.random() * 3) + 1).toString();
-      } else {
-        personId = this.$store.state.person.id;
-      }
+      const reader = new FileReader();
+      reader.readAsDataURL(photo);
+      reader.onloadend = () => {
+        const base64data = reader.result;
 
-      const faceRecognitionMock = {
-        "facePresent": Math.random() >= 0.5,
-        "landmarks": {
-          "eyesCenter": {
-            "x": 0,
-            "y": 0
-          }
-        },
-        "personId": personId
-      };
-      this.$store.dispatch('setFaceRecognitionData', faceRecognitionMock);
+        axios.post('http://localhost:5000', {
+          img: base64data
+        })
+          .then(resp => {
+            this.$store.dispatch('setFaceRecognitionData', resp.data);
+          });
+      }
     },
     stopTakingPhotos() {
       clearInterval(this.takePhotosLoop);
