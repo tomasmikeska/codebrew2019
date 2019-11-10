@@ -37,7 +37,7 @@ export default {
       reader.onloadend = () => {
         const base64data = reader.result;
 
-        axios.post('http://localhost:5000', {
+        axios.post('http://34.89.243.150:5050', {
           img: base64data
         })
           .then(resp => {
