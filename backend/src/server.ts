@@ -10,9 +10,9 @@ const call = require('./integrations/call');
 async function lol() {
   const nlpAdapter = require('./nlp/watson-adapter');
 
-  //let result = await nlpAdapter.getMessageWithContext('meeting room', {});
-  //result = await nlpAdapter.getMessageWithContext('green', result.context);
-  //result = await nlpAdapter.getMessageWithContext('cinema', result.context);
+  let result = await nlpAdapter.getMessageWithContext('weather', {});
+  result = await nlpAdapter.getMessageWithContext('Berlin', result.context);
+  result = await nlpAdapter.getMessageWithContext('now', result.context);
 
   // await nlpAdapter.getMessageWithContext('reserve meeting room biege', {});
   //await nlpAdapter.getMessage('green');
