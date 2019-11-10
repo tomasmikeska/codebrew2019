@@ -24,7 +24,7 @@ export default function setSocket(server: Server): SocketServer {
       const response = await nlpAdapter.getMessageWithContext(message.content, context);
       context = response.context;
 
-      intentExtendActions(response, socket);
+      intentExtendActions.processIntent(response, socket);
       const messages = response.output.text.map((message: String) => {
         return {
           content: message
