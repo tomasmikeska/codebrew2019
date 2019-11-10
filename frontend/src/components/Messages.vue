@@ -65,6 +65,7 @@ export default {
 }
 
 .messages {
+  padding: 60px 30px 0 30px;
   width: 100%;
   overflow-y: auto;
 
@@ -88,6 +89,7 @@ export default {
       margin-left: 20px;
       justify-content: flex-end;
       text-align: right;
+      color: orange;
     }
 
     .message_content {
