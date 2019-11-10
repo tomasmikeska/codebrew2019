@@ -36,12 +36,13 @@ def is_face_present():
     img_np = base64_to_np(data_uri)
     # Faces detected
     faces = detect_faces(img_np)
+    identity = get_face_identity(img_np)
 
     return {
-        "facePresent": len(faces) > 0,
-        "personId": get_face_identity(img_np)
+        "facePresent": identity != None or len(faces) > 0,
+        "personId": identity
     }
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=False)

@@ -41,6 +41,7 @@ export default {
           img: base64data
         })
           .then(resp => {
+            console.log(resp.data);
             this.$store.dispatch('setFaceRecognitionData', resp.data);
           });
       }
