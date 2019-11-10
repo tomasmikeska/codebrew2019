@@ -13,7 +13,7 @@ async function lol() {
   //await nlpAdapter.getMessage('green');
 }
 
-lol();
+// lol();
 
 const server: Server = createServer(app);
 setSocket(server);

@@ -12,6 +12,11 @@ export default function setSocket(server: Server): SocketServer {
     let context = {
     };
 
+    let date = {
+      day: 1,
+      hours: 0,
+    };
+
     socket.on('message', async (message) => {
       console.log(`Received message with content: ${message.content}`);
       const response = await nlpAdapter.getMessageWithContext(message.content, context);
@@ -27,21 +32,19 @@ export default function setSocket(server: Server): SocketServer {
       });
     });
 
-    socket.on('context', async (newContext) => {
-      context = {...context, ...newContext};
-      console.log('New Context: ', context);
+    socket.on('context', async (newDate) => {
+      date = {...newDate};
+      console.log('New date: ', date);
     });
 
     socket.on('new-person', async (person) => {
+      context = {...date};
       if (person) {
         console.log(`User ${person.firstName} ${person.surname} is here!`);
         // @ts-ignore
         context.user = `${person.firstName} ${person.surname}`;
-      } else {
-        console.log("Unknown user is here!");
-        // @ts-ignore
-        delete context.user;
       }
+
       const response = await nlpAdapter.getMessageWithContext('Hello', context);
       context = response.context;
 
